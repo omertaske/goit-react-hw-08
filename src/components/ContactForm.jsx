@@ -11,10 +11,7 @@ const ContactForm = () => {
     e.preventDefault();
     if (!name || !phone) return;
 
-    // Redux action dispatch
     dispatch(addContact({ name, phone }));
-
-    // Formu temizle
     setName('');
     setPhone('');
   };

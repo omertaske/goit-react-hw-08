@@ -21,17 +21,14 @@ const Contacts = () => {
           My Contacts
         </h1>
 
-        {/* Form */}
         <div className="mb-6">
           <ContactForm />
         </div>
 
-        {/* Filter */}
         <div className="mb-6">
           <Filter />
         </div>
 
-        {/* Contacts List */}
         <div>
           {contacts.length ? (
             <ContactList contacts={contacts} />

@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchContacts,
-  addContact,
-  deleteContact,
-  updateContact,
-} from './operations';
+import { fetchContacts, addContact, deleteContact, updateContact } from './operations';
 import { logout } from '../auth/operations';
 
 const contactsSlice = createSlice({
@@ -36,9 +31,21 @@ const contactsSlice = createSlice({
       state.error = action.payload;
     });
 
-    // add
+    // add (optimistic update)
+    builder.addCase(addContact.pending, (state, action) => {
+      state.items.push({ ...action.meta.arg, tempId: true }); // geçici contact ekle
+    });
     builder.addCase(addContact.fulfilled, (state, action) => {
-      state.items.push(action.payload);
+      const idx = state.items.findIndex(item => item.tempId);
+      if (idx !== -1) {
+        state.items[idx] = action.payload; // API response ile değiştir
+      } else {
+        state.items.push(action.payload);
+      }
+    });
+    builder.addCase(addContact.rejected, (state, action) => {
+      state.items = state.items.filter(item => !item.tempId);
+      state.error = action.payload;
     });
 
     // delete
@@ -49,12 +56,10 @@ const contactsSlice = createSlice({
     // update
     builder.addCase(updateContact.fulfilled, (state, action) => {
       const idx = state.items.findIndex(c => c.id === action.payload.id);
-      if (idx !== -1) {
-        state.items[idx] = action.payload;
-      }
+      if (idx !== -1) state.items[idx] = action.payload;
     });
 
-    // logout -> tüm contactları temizle
+    // logout -> clear contacts
     builder.addCase(logout.fulfilled, state => {
       state.items = [];
       state.isLoading = false;
