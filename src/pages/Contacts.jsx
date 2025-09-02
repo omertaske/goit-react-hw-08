@@ -1,26 +1,47 @@
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../redux/contacts/operations';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from '../redux/contacts/operations';
+import { selectFilteredContacts } from '../redux/contacts/selectors';
+import ContactList from '../components/ContactList';
+import ContactForm from '../components/ContactForm';
+import Filter from '../components/Filter';
 
-const Contact = ({ contact }) => {
+const Contacts = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectFilteredContacts);
 
-  const handleDelete = () => {
-    dispatch(deleteContact(contact.id));
-  };
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
-    <li className="flex justify-between items-center p-3 mb-2 bg-white shadow-sm rounded">
-      <span className="text-gray-800 font-medium">
-        {contact.name} - {contact.number || contact.phone}
-      </span>
-      <button
-        onClick={handleDelete}
-        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
-      >
-        Delete
-      </button>
-    </li>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
+      <div className="w-full max-w-3xl bg-white shadow-lg rounded-xl p-8">
+        <h1 className="text-3xl font-extrabold mb-6 text-center text-blue-600">
+          My Contacts
+        </h1>
+
+        {/* Form */}
+        <div className="mb-6">
+          <ContactForm />
+        </div>
+
+        {/* Filter */}
+        <div className="mb-6">
+          <Filter />
+        </div>
+
+        {/* Contacts List */}
+        <div>
+          {contacts.length ? (
+            <ContactList contacts={contacts} />
+          ) : (
+            <p className="text-center text-gray-500">No contacts found.</p>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Contact;
+export default Contacts;

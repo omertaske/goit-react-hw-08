@@ -30,8 +30,9 @@ const Registration = () => {
       resetForm();
       navigate('/contacts'); // kişisel bölgeye yönlendirme
     } catch (error) {
-      console.error('Registration failed:', error);
-      alert(error.message || 'Registration failed, please try again.');
+ console.error('Registration failed:', error);
+  const message = error?.message || error?.data?.message || 'Registration failed, please try again.';
+  alert(message);
     }
   };
 
