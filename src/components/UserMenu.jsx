@@ -11,9 +11,14 @@ const UserMenu = () => {
   };
 
   return (
-    <div>
-      <span>{user.name}</span>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="flex items-center gap-4">
+      <span className="font-medium text-gray-700">Hello, {user.name}</span>
+      <button
+        onClick={handleLogout}
+        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+      >
+        Logout
+      </button>
     </div>
   );
 };
