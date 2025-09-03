@@ -33,12 +33,12 @@ const contactsSlice = createSlice({
 
     // add (optimistic update)
     builder.addCase(addContact.pending, (state, action) => {
-      state.items.push({ ...action.meta.arg, tempId: true }); // geçici contact ekle
+      state.items.push({ ...action.meta.arg, tempId: true }); // geçici contact 
     });
     builder.addCase(addContact.fulfilled, (state, action) => {
       const idx = state.items.findIndex(item => item.tempId);
       if (idx !== -1) {
-        state.items[idx] = action.payload; // API response ile değiştir
+        state.items[idx] = action.payload; 
       } else {
         state.items.push(action.payload);
       }
@@ -48,18 +48,18 @@ const contactsSlice = createSlice({
       state.error = action.payload;
     });
 
-    // delete
+    // silindi
     builder.addCase(deleteContact.fulfilled, (state, action) => {
       state.items = state.items.filter(c => c.id !== action.payload);
     });
 
-    // update
+    // yüklendi
     builder.addCase(updateContact.fulfilled, (state, action) => {
       const idx = state.items.findIndex(c => c.id === action.payload.id);
       if (idx !== -1) state.items[idx] = action.payload;
     });
 
-    // logout -> clear contacts
+    // çıkış oluyo  -> temizleniyo contacts
     builder.addCase(logout.fulfilled, state => {
       state.items = [];
       state.isLoading = false;

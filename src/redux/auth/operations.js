@@ -11,7 +11,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-// register
+// kayıt alıyoz
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
@@ -25,7 +25,7 @@ export const register = createAsyncThunk(
   }
 );
 
-// login
+// giriş yapıyoz
 export const login = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
@@ -39,7 +39,7 @@ export const login = createAsyncThunk(
   }
 );
 
-// logout
+// çıkış yapıyoz
 export const logout = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
@@ -52,7 +52,7 @@ export const logout = createAsyncThunk(
   }
 );
 
-// refresh user
+// refresh yapılıyor ama
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
