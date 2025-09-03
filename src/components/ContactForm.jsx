@@ -11,7 +11,7 @@ const ContactForm = () => {
     e.preventDefault();
     if (!name || !phone) return;
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number: phone }));
     setName('');
     setPhone('');
   };

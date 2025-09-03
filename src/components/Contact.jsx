@@ -11,7 +11,7 @@ const Contact = ({ contact }) => {
   return (
     <li className="flex justify-between items-center p-3 mb-2 bg-white shadow-sm rounded">
       <span className="text-gray-800 font-medium">
-        {contact.name} - {contact.number || contact.phone}
+        {contact.name} - {contact.number}
       </span>
       <button
         onClick={handleDelete}
