@@ -6,9 +6,24 @@ const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <nav>
-      <NavLink to="/">Home</NavLink>
-      {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
+    <nav className="flex gap-6 text-gray-700 font-medium">
+      
+
+
+      {isLoggedIn && (
+        <NavLink
+          to="/contacts"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded transition-colors ${
+              isActive
+                ? 'bg-indigo-500 text-white'
+                : 'hover:bg-indigo-100 hover:text-indigo-600'
+            }`
+          }
+        >
+          Home
+        </NavLink>
+      )}
     </nav>
   );
 };

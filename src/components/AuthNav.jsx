@@ -2,14 +2,14 @@ import { NavLink } from 'react-router-dom';
 
 const AuthNav = () => {
   return (
-    <div className="flex gap-6 mr-8">
+    <div className="flex gap-4">
       <NavLink
         to="/login"
         className={({ isActive }) =>
           `px-4 py-2 rounded font-medium transition-colors ${
             isActive
-              ? 'bg-blue-500 text-white'
-              : 'text-gray-700 hover:bg-blue-100'
+              ? 'bg-blue-500 text-white shadow-md'
+              : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600'
           }`
         }
       >
@@ -20,8 +20,8 @@ const AuthNav = () => {
         className={({ isActive }) =>
           `px-4 py-2 rounded font-medium transition-colors ${
             isActive
-              ? 'bg-green-500 text-white'
-              : 'text-gray-700 hover:bg-green-100'
+              ? 'bg-green-500 text-white shadow-md'
+              : 'text-gray-700 hover:bg-green-100 hover:text-green-600'
           }`
         }
       >

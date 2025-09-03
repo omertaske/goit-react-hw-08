@@ -15,7 +15,7 @@ const UserMenu = () => {
       <span className="font-medium text-gray-700">Hello, {user.name}</span>
       <button
         onClick={handleLogout}
-        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+        className="px-4 py-2 bg-red-500 text-white rounded shadow hover:bg-red-600 transition-colors"
       >
         Logout
       </button>

@@ -8,7 +8,7 @@ const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <header  className="bg-white shadow-md p-4 flex justify-between items-center">
+    <header className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
@@ -16,8 +16,3 @@ const AppBar = () => {
 };
 
 export default AppBar;
-
-
-
-
-
