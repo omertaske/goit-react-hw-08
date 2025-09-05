@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 flex flex-col items-center justify-center px-4">
@@ -9,20 +11,23 @@ const Home = () => {
           Manage your personal contacts easily, securely, and efficiently. 
           Register or login to start using your contact list.
         </p>
+
+       
         <div className="flex justify-center gap-4 mb-6">
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition"
           >
             Register
-          </a>
-          <a
-            href="/login"
+          </Link>
+          <Link
+            to="/login"
             className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg shadow hover:bg-gray-300 transition"
           >
             Login
-          </a>
+          </Link>
         </div>
+
         <p className="text-gray-500 mt-4">
           Project Github:{" "}
           <a
